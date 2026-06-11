@@ -108,6 +108,36 @@ Then: glossary, language-101 appendix, assembly, audits.
     **Exercises.** 3-4, reusing prompts BY NUMBER
        ("rerun [137] with k=5"); last lecture gets a capstone
 
+Pacing trap (chicken-and-egg): groundwork lectures delay the
+exciting material for weeks. Counter it: lecture 1 ENDS with
+an unnumbered shell-demo preview of the course's flashiest
+outputs ("magic now, yours by lecture N — the boring parts
+ARE the AI"), and each groundwork lecture's recap carries a
+one-line "coming attraction" naming a runnable CLI command
+that its material unlocks. Unnumbered shell blocks cost no
+renumbering.
+
+## 5b. MOTIVATION LAYER (the difference between a manual
+and a course)
+
+- The header opens with a FIGHT (a famous claim the course
+  disputes) and a killer-numbers gallery: 3-4 concrete,
+  sourced figures that raise the stakes (table sizes, label
+  costs, headline results).
+- Never quote intimidating totals about the codebase ("1,400
+  lines"); say "a few hundred lines per file". Numbers that
+  impress about the PROBLEM, numbers that reassure about
+  the CODE.
+- Every lecture opens with a "Where this bites" paragraph:
+  one real, named, sourced industrial scenario the
+  lecture's code addresses.
+- Thread a falsifiable-bets frame: each algorithm gets a
+  one-line "today's bet: ... falsified when ..." note tied
+  to a real failure case.
+- Every lecture's exercises end with a "field trip": run
+  today's tool on a real dataset named in that lecture's
+  cold-open (verify the file exists first).
+
 ## 6. ACRONYMS, VIGNETTES, GLOSSARY
 
 Every SE/AI idea = 2-6 char acronym (WEL, ACQ, PARETO...).
@@ -118,6 +148,17 @@ Every SE/AI idea = 2-6 char acronym (WEL, ACQ, PARETO...).
       re-explanation
     - glossary = final table: acro | expansion | one-liner |
       first use ([L4.2](#l4)) | ref. Alphabetical.
+    - NEVER cite without a bibliography: a final References
+      section lists every vignette/glossary citation with a
+      clickable link (DOI preferred; publisher/arXiv/
+      encyclopedia page otherwise; a scholar.google query
+      link as last resort). Readers must be able to verify
+      each work exists and says what you claim.
+    - define EVERY technical term before first load-bearing
+      use (a KS test needs CDFs defined first); when the
+      code embodies a theory object (pdf heights in a
+      likelihood, CDF positions in a normalizer), name it
+      at each appearance — theory threads beat theory dumps.
     - links inside vignettes/glossary/appendix only; body
       prose stays link-free (kr voice)
 
@@ -131,20 +172,64 @@ causality (at the tree lecture), optimization history +
 Pareto canon (at the population lecture), SBSE applications
 + case studies (ditto), BO/Thompson/acquisition vocabulary
 (at the active-learning lecture), validation ritual (at the
-classifier lecture). Each woven idea that earns an acronym
+classifier lecture). Statistics deserves the deepest lab,
+not the thinnest: teach the noise floor (two same-source
+samples score nonzero effect size), the sample-size flip
+(same shift invisible at n=10, glaring at n=1000), and the
+engineering eps gate — with hand-checkable tiny lists before
+seeded big ones. Sampling-as-theme should thread the whole
+course. Each woven idea that earns an acronym
 gets a vignette like any other. Apply rule 2.5 ruthlessly:
 no code hook, no weave.
 
 ## 8. LANGUAGE-101 APPENDIX
 
 A hands-on mini-tutorial of the implementation language —
-NOT a reference card. Own numbered events, continuing the
-global sequence; pure language, zero project/data deps, runs
+NOT a reference card. Own numbered events in a DISJOINT
+range (start at 1000) so lecture edits never renumber the
+appendix; pure language, zero project/data deps, runs
 in a bare REPL. Cover only constructs `sources` use; tie
 each back to where the sources use it ("now re-read l.new —
 that is [284]+[285] in one line"). End with a
 "deliberately skipped" list. Cite the quick-ref from
 `refs`.
+
+## 8b. ASSESSMENT LAYER (Bloom, top to bottom)
+
+Audit the tutorial against Bloom's hierarchy before calling
+it done. Lab traces + field trips = apply; check questions =
+analyze; stats/protocol critiques = evaluate; capstone +
+extension exercises = create. The systematic hole in
+tutorial-shaped material is ASSESSMENT and ERROR DIAGNOSIS —
+fill it with an exam bank:
+
+    - ~120 questions, each NUMBERED BY ITS REPL GATE: after
+      grokking prompt [N], a student can answer every
+      question numbered <= N. Gates double as a
+      self-assessment map of the course.
+    - every question has two parts, deliberately at the two
+      ends of Bloom: part a = definitional recall (tell
+      students to attempt it from memory BEFORE the
+      glossary — retrieval practice beats re-reading);
+      part b = diagnosis: a tiny snippet of the REAL
+      codebase with exactly ONE planted error; student
+      names the error, its consequence, and the fix —
+      fix described in English, never code (tests
+      understanding, not syntax).
+    - plant DIVERSE bugs: lost guards ("?" checks, empty
+      splits), flipped comparisons, off-by-one loops,
+      missing returns, un-anchored patterns, statement-order
+      bugs (welford!), protocol errors with no code at all
+      (test-on-train, seed shopping, post-hoc thresholds).
+      Mine the codebase's own invariants; every vignette
+      suggests a violation.
+    - first ~100 questions + worked answers ship inside
+      tut.md as a revision guide (anchor #quiz, #answers,
+      TOC rows); the last ~20 (highest gates: the stats
+      lecture + the language appendix) + answers go to a
+      SECRET file outside the repo, for the exam itself.
+    - audits: question numbers monotonic; question set ==
+      answer set; public/secret disjoint; counts exact.
 
 ## 9. ASSEMBLY (single flat file)
 
@@ -159,7 +244,8 @@ that is [284]+[285] in one line"). End with a
 
 ## 10. AUDITS (run all; all greppable)
 
-    1. event numbers strictly 1..N, no gaps/dups
+    1. event numbers strictly 1..N (appendix block from
+       1000), no gaps/dups within each range
     2. per-lecture event count within 18-25
     3. vignette acros <-> glossary rows: exact bijection
        (extract with a digit-tolerant pattern: D2H!)
@@ -169,6 +255,13 @@ that is [284]+[285] in one line"). End with a
        fabrication and drift)
     6. Lions test (aspirational): every source function
        appears in some stanza; list the misses
+    7. quiz: gates monotonic, Q-set == A-set, public count
+       and secret count exact, no overlap
+    8. define-before-use: for every acronym, first
+       [ACRO](#glossary) link must not precede its vignette
+       (mechanical: compare line numbers); for plain
+       jargon, sweep for terms like posterior/manifold/
+       tournament used cold
 
 ## 11. EFFORT
 
