@@ -352,3 +352,109 @@ per `tutorial-placement`).
 the order they could be discovered. *Stanza* for the fixed couplet form:
 65-col prose paired with 4-space code. Form name says how it looks;
 content name says why that order.
+
+# v3 EXTENSIONS: Tutorial Edition
+
+Extends the prompt above for multi-lecture REPL tutorials.
+Where v3 conflicts with the base prompt, v3 wins.
+
+## INPUTS (new AUTHOR-CONFIG knobs)
+
+    - sources: code files presented, in teaching order
+      (e.g. lib.lua, lull.lua, lapps.lua). All stanza code
+      is verbatim from these; never invent code.
+    - exemplars: see EXEMPLARS below.
+    - refs:
+      - se:   github.com/txt/guru26spr/blob/main/docs/review/one.md
+      - ai:   Domingos CACM'12 "A Few Useful Things...";
+              Settles, Active Learning survey; ai-principles.md
+      - lang: Lauer, Lua 5.1 quick ref (web.archive.org copy)
+
+## EXEMPLARS (scoped imitation)
+
+Take ONLY the named dimension from each. Never copy prose;
+never imitate an exemplar's language or markup.
+
+    kr_ch1.md   TONE+PACING. Direct "you" voice; admits
+                limits; tiny runnable example first,
+                explanation after; exercises at section
+                ends. Ignore: C content.
+    fri2.md     FORM. Stanza = prose+code couplet; numbered
+                REPL traces [N]>; callout boxes.
+                Ignore: Lisp specifics.
+    ezr.tex     COVERAGE+ORDER+DIALOG. Topic sequence (peek
+                at structs -> classic algorithms -> trees ->
+                optimizers -> active learning -> stats); the
+                claim->code->consequence paper dialog; design
+                notes after each section. Ignore: LaTeX form.
+    Lions' Commentary  COVERAGE IDEAL (cite by name, no
+                file): every line of sources discussed
+                somewhere.
+
+## PRINCIPLES = ACRONYMS
+
+Each SE/AI idea gets a 2-5 letter acronym: BOB, NB, ACQ...
+First executable use -> one vignette. Every later mention is
+an inline [ACQ](#glossary) link, never a re-explanation.
+
+## VIGNETTES
+
+Blockquote callout, <= 8 lines, directly after the stanza
+where the idea first runs:
+
+    > **ACQ — acquire (active learning).** Label only the
+    > row that teaches most. Here: keysort by bayes score,
+    > take top. Ref: Settles'09.
+
+At most one vignette per block; one per acronym, total.
+
+## BUDGET
+
+    lectures:           10
+    blocks-per-lecture: 4-5   (block ~= 15-20 min sitting)
+    repl-per-block:     4-5
+    total REPL events:  ~200, global numbering [1]>..[200]>
+
+Block = 1-2 stanzas -> REPL run (4-5 prompts) -> at most one
+vignette -> one check question. Every REPL event is something
+the student types verbatim (copy-pasteable, expected output
+shown) — the ~20 things-to-do per lecture ARE the REPL
+prompts. Lecture ends: recap + "REPL prompts covered: N-M" +
+exercises that reuse those prompts (kr style: "rerun [137]>
+with k=5").
+
+Audit: count [N]> per lecture; accept 18-22; numbering gaps
+or duplicates = build error (number-repl.awk).
+
+## GLOSSARY (final chunk)
+
+Table: ACRO | expansion | one-liner | first-use anchor | ref.
+Audits (awk-able): glossary<->vignette bijection; anchors
+resolve; no acronym unused by sources code. Cap ~25.
+
+## APPENDIX
+
+Condensed language ref built from refs.lang: only constructs
+sources use; each entry links its first-use stanza; cite, do
+not copy.
+
+## LINKS
+
+Markdown output. Hyperlinks only in vignettes, glossary,
+appendix. Body prose link-free (kr voice). Relative anchors
+internal; full URLs external.
+
+## WORKFLOW (two passes; outline is a reviewable artifact)
+
+1. OUTLINE PASS. Read sources + ezr.tex. Emit ONLY a
+   10-lecture plan: per lecture — source functions covered,
+   acronyms introduced, block list with REPL counts. ~1 page.
+   STOP for human approval. No prose before the outline is
+   frozen.
+2. CHUNK PASS. Generate one lecture (or one block) per turn
+   against the frozen outline. One chunk fits in context and
+   is revisable in isolation; assemble.awk + number-repl.awk
+   stitch and number.
+3. AUDITS. Per-lecture REPL counts 18-22; glossary/vignette
+   bijection; every sources line appears in some stanza
+   (Lions test); anchors resolve.

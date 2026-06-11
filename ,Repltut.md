@@ -20,6 +20,7 @@ less author.md
 - [author.md](#file-author-md) — the authoring prompt (genetic stanza spec, AUTHOR-CONFIG knobs)
 - [fri2.md](#file-fri2-md) — worked example: data-lite active learning in SBCL, 48 REPL steps
 - [kr_ch1.md](#file-kr_ch1-md) — K&R ch.1 extract; tone calibration for `tone: kr`
+- [ezr.tex](#file-ezr-tex) — paper-dialog exemplar; coverage + topic order
 - [Makefile](#file-makefile) — konfig knobs (help, push, sh, pdf targets)
 
 ## NAME
@@ -54,8 +55,9 @@ less author.md
 ## EXEMPLARS
 
     K&R chapter 1        tone and pacing (kr_ch1.md)
-    Lions' Commentary    code-as-paper coverage
+    Lions' Commentary    code-as-paper coverage (cited)
     fri2.md              the stanza + numbered-REPL form
+    ezr.tex              coverage, topic order, paper dialog
 
 ## OUTPUT
 
