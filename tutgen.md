@@ -3,8 +3,10 @@
 Paste this whole file to an LLM agent, plus the inputs below.
 Output: one self-contained `tut.md` — a multi-lecture course
 over a codebase, narrated by numbered, machine-verified REPL
-events. Scale instance of this recipe: lull's tut.md (2,700
-lines, 10 lectures, 295 events, 47 glossary terms).
+events. Scale instance of this recipe: lull's tut.md (~5,000
+lines: 10 lectures, 307 verified events, 51 glossary terms,
+100 gated exam questions with answers, references,
+language appendix).
 
 ## 1. INPUTS (caller supplies; stop and ask if missing)
 
@@ -68,6 +70,9 @@ Known traps (all hit in practice):
       of a multi-key dict in a trace; sort first
     - each lecture runs in a FRESH process: re-create needed
       state at lecture top (students must too — feature)
+    - splicing chunks with awk -v: backslashes in -v
+      pattern values are mangled SILENTLY (inserts no-op);
+      match with index(), not regex
     - weak demos: if a trace shows "nothing happened"
       (e.g. a mean that barely moves), redesign the example
       around a comparison (treated vs random) before writing
@@ -89,7 +94,21 @@ PASS 2 — LECTURES, one at a time, checkpoint after each:
        or noisy traces NOW (renumbering later is expensive)
     3. write the lecture chunk around the verbatim trace
 
-Then: glossary, language-101 appendix, assembly, audits.
+Then: glossary, language-101 appendix, exam bank,
+assembly, audits.
+
+PERSIST THE .in FILES. The REPL input files are the only
+honest way to regenerate or renumber traces later; a temp
+dir evaporates. Stash them (plus the harness) in a durable
+side location when the build ends.
+
+RENUMBERING is the expensive operation: inserting events
+mid-course shifts every later trace number, every prose
+reference, and every exam-question gate above the insert.
+Prefer appending at section ends; when you must insert,
+regenerate traces from .in files and shift prose refs +
+quiz gates mechanically (a one-line number-shift script),
+never by hand.
 
 ## 5. LECTURE ANATOMY
 
@@ -201,35 +220,79 @@ it done. Lab traces + field trips = apply; check questions =
 analyze; stats/protocol critiques = evaluate; capstone +
 extension exercises = create. The systematic hole in
 tutorial-shaped material is ASSESSMENT and ERROR DIAGNOSIS —
-fill it with an exam bank:
+fill it with an exam bank. Structure:
 
     - ~120 questions, each NUMBERED BY ITS REPL GATE: after
       grokking prompt [N], a student can answer every
       question numbered <= N. Gates double as a
       self-assessment map of the course.
-    - every question has two parts, deliberately at the two
-      ends of Bloom: part a = definitional recall (tell
-      students to attempt it from memory BEFORE the
-      glossary — retrieval practice beats re-reading);
-      part b = diagnosis: a tiny snippet of the REAL
-      codebase with exactly ONE planted error; student
-      names the error, its consequence, and the fix —
-      fix described in English, never code (tests
-      understanding, not syntax).
-    - plant DIVERSE bugs: lost guards ("?" checks, empty
-      splits), flipped comparisons, off-by-one loops,
-      missing returns, un-anchored patterns, statement-order
-      bugs (welford!), protocol errors with no code at all
-      (test-on-train, seed shopping, post-hoc thresholds).
-      Mine the codebase's own invariants; every vignette
-      suggests a violation.
-    - first ~100 questions + worked answers ship inside
-      tut.md as a revision guide (anchor #quiz, #answers,
-      TOC rows); the last ~20 (highest gates: the stats
-      lecture + the language appendix) + answers go to a
+    - two parts per question, deliberately at the two ends
+      of Bloom: part a = definitional recall (instruct
+      students to attempt from memory BEFORE the glossary —
+      retrieval practice beats re-reading); part b =
+      diagnosis: a small artifact (a few lines of near-real
+      code, or a described protocol/decision) with exactly
+      ONE planted error — student names the error, its
+      consequence, and the fix, with the fix described in
+      English, never code (tests understanding, not syntax).
+    - first ~100 questions + worked answers ship inside the
+      tutorial as a revision guide (#quiz, #answers, TOC
+      rows); the last ~20 (highest gates) + answers go to a
       SECRET file outside the repo, for the exam itself.
-    - audits: question numbers monotonic; question set ==
-      answer set; public/secret disjoint; counts exact.
+
+Question-writing principles (hard-won; do not relax):
+
+    1. TEST IDEAS, NOT TRIVIA. Every question targets a
+       higher-level point — a named course principle, not a
+       mechanic. Planted errors are principle violations
+       (leakage, optimism on missing data, no baseline,
+       test-on-train, stale labels, post-hoc thresholds,
+       order effects, fabricated outcomes) — never
+       off-by-ones, missing returns, or anything a linter
+       would catch.
+    2. CONTEXT + CLUES, BOTH PARTS. Part a AND part b each
+       open with a sentence of scene-setting that names the
+       machinery and its purpose, plus an embedded clue
+       (acronym link, prompt number, leading phrase).
+       Example: not "In T = 1-h/b, what are h and b?" but
+       "Simulated annealing escapes local optima by
+       sometimes accepting worse moves, governed by the
+       cooling schedule T = 1-h/b. What are h and b, and
+       what happens to acceptance as h -> b?" A student may
+       need the course to ANSWER, never just to understand
+       the question.
+    2b. THE ASK IS EXPLICIT IN EVERY PART. Never rely on a
+       standing instruction from the guide's intro: each
+       part b ends with its own question ("What is the
+       mistake, its consequence, and the fix?") even when
+       repetitive. A question without a question mark is a
+       reading-comprehension test, not an exam item.
+    3. ALIGN EACH QUESTION to the learning point at its
+       gate (the vignette/acronym introduced there) — gates
+       are learning outcomes in disguise.
+    4. ONE DEFENSIBLE ANSWER per part; no trick ambiguity.
+       The planted error must be findable and singular.
+    5. ERRORS = REAL MISCONCEPTIONS. Plant the mistakes
+       students/practitioners actually make (the
+       distractor principle); scenario b-parts work well as
+       "a team did X" stories from practice.
+    6. APPLICATION IN NEW CONTEXTS beats recall of old
+       ones: set b-parts in settings the tutorial never
+       used (spam filters, dashboards, vendor tools) so
+       answering requires transfer, not memory.
+    7. CLARITY AND CONCISION: simple sentences, no
+       unnecessary jargon, homogeneous length and
+       difficulty within each part's tier.
+    8. REVIEW CYCLE: revisit the bank each offering; mine
+       student wrong answers for new distractors/errors.
+       (Ref: Durham SDE, "Writing strong test questions",
+       sde.webspace.durham.ac.uk.)
+
+Audits: question numbers monotonic; question set == answer
+set; public/secret disjoint; counts exact; every question
+opens with context (mechanical smell test: a part that
+begins with a bare formula, function name, or "What does X
+return" fails rule 2).
 
 ## 9. ASSEMBLY (single flat file)
 
@@ -240,13 +303,17 @@ fill it with an exam bank:
              slugs are renderer-dependent; do not trust)
     back buttons: [contents](#contents) after every lecture,
              glossary, appendix; --- between sections
-    order:   header, lectures 1..10, glossary, appendix
+    order:   header, lectures 1..10, glossary, language
+             appendix, revision guide (#quiz), answers
+             (#answers), references (#refs) last
 
 ## 10. AUDITS (run all; all greppable)
 
     1. event numbers strictly 1..N (appendix block from
        1000), no gaps/dups within each range
-    2. per-lecture event count within 18-25
+    2. per-lecture event count ~18-25 (a deliberately deep
+       lecture may reach ~40 — consider splitting it across
+       two weeks)
     3. vignette acros <-> glossary rows: exact bijection
        (extract with a digit-tolerant pattern: D2H!)
     4. every anchor referenced is defined
@@ -265,7 +332,11 @@ fill it with an exam bank:
 
 ## 11. EFFORT
 
-Expect roughly: outline 15 min; 20-30 min per lecture
-(half of it running and fixing traces); glossary + appendix
-+ assembly + audits ~1 hour. Sequential total: 4-6 hours.
-Checkpoint after every lecture so partial work ships.
+Expect roughly: outline 15 min; 20-30 min per lecture (half
+of it running and fixing traces); glossary + language
+appendix + assembly + audits ~1 hour. That base build is
+4-6 hours. The layers added in later passes cost more:
+theory/motivation weaves ~1-2 hours, the 120-question exam
+bank ~2-3 hours (bug-planting is slow, careful work).
+Full course: 8-12 hours. Checkpoint after every lecture and
+after every layer so partial work always ships.
