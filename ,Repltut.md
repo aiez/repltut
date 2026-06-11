@@ -17,10 +17,12 @@ less author.md
 <img width="150" align="right" alt="qr" src="https://tiny.cc/tiny/qr-image/tiny.cc~repltut~l~150.png" />
 
 ### Files
+- [tutgen.md](#file-tutgen-md) — meta-prompt: code in, full multi-lecture REPL course out (harness, audits, weave rules)
 - [author.md](#file-author-md) — the authoring prompt (genetic stanza spec, AUTHOR-CONFIG knobs)
 - [fri2.md](#file-fri2-md) — worked example: data-lite active learning in SBCL, 48 REPL steps
 - [kr_ch1.md](#file-kr_ch1-md) — K&R ch.1 extract; tone calibration for `tone: kr`
 - [ezr.tex](#file-ezr-tex) — paper-dialog exemplar; coverage + topic order
+- [repl.lua](#file-repl-lua) — reference replay harness (verbatim numbered traces)
 - [Makefile](#file-makefile) — konfig knobs (help, push, sh, pdf targets)
 
 ## NAME
