@@ -3,10 +3,10 @@
 Paste this whole file to an LLM agent, plus the inputs below.
 Output: one self-contained `tut.md` — a multi-lecture course
 over a codebase, narrated by numbered, machine-verified REPL
-events. Scale instance of this recipe: lull's tut.md (~5,000
-lines: 10 lectures, 307 verified events, 51 glossary terms,
-100 gated exam questions with answers, references,
-language appendix).
+events. Scale instance of this recipe: luamine's tut.md
+(~5,000 lines: 10 lectures, 307 verified events, 55 glossary
+terms, 124 gated exam questions — 104 public with answers,
+20 secret — references, language appendix).
 
 ## 1. INPUTS (caller supplies; stop and ask if missing)
 
@@ -19,7 +19,7 @@ language appendix).
     exemplars:  kr_ch1.md = tone/pacing; fri2.md = stanza +
                 numbered-REPL form; ezr.tex = coverage,
                 topic order, paper dialog; Lions (cite) =
-                every-line-discussed ideal; lull tut.md =
+                every-line-discussed ideal; luamine tut.md =
                 the assembled whole. Imitate ONLY the named
                 dimension of each.
     refs:       SE-principles doc, AI-principles sources,
@@ -321,8 +321,13 @@ return" fails rule 2).
 
 ## 9. ASSEMBLY (single flat file)
 
-    header:  title, license, claim paragraph, setup block,
+    header:  title, license, version date (build day —
+             readers + graders need to know which build
+             their trace numbers came from), claim
+             paragraph, setup block,
              TOC table: # | lecture | REPL range | ideas
+             (+ rows for quiz, answers, glossary,
+             appendix, references)
     anchors: <a name="l1"> .. <a name="l10">, "contents",
              "glossary", "appendix" (HTML anchors — heading
              slugs are renderer-dependent; do not trust)

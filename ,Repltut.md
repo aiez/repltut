@@ -71,7 +71,7 @@ less author.md
 
 ## SEE ALSO
 
-    lull      http://tiny.cc/lull     Lua learners (same CSV protocol)
+    luamine   http://tiny.cc/luamine  Lua data mining (same CSV protocol)
     konfig    http://tiny.cc/konfig   shared Makefile, dotfiles
 
 ## LICENSE

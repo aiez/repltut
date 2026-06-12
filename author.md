@@ -361,7 +361,7 @@ Where v3 conflicts with the base prompt, v3 wins.
 ## INPUTS (new AUTHOR-CONFIG knobs)
 
     - sources: code files presented, in teaching order
-      (e.g. lib.lua, lull.lua, lapps.lua). All stanza code
+      (e.g. lib.lua, luamine.lua, lapps.lua). All stanza code
       is verbatim from these; never invent code.
     - exemplars: see EXEMPLARS below.
     - refs:
@@ -413,7 +413,9 @@ At most one vignette per block; one per acronym, total.
     lectures:           10
     blocks-per-lecture: 4-5   (block ~= 15-20 min sitting)
     repl-per-block:     4-5
-    total REPL events:  ~200, global numbering [1]>..[200]>
+    total REPL events:  ~200-300, global numbering [1]>..[N]>
+                        (language appendix gets a disjoint
+                        range from [1000]>; see tutgen.md)
 
 Block = 1-2 stanzas -> REPL run (4-5 prompts) -> at most one
 vignette -> one check question. Every REPL event is something
@@ -423,14 +425,16 @@ prompts. Lecture ends: recap + "REPL prompts covered: N-M" +
 exercises that reuse those prompts (kr style: "rerun [137]>
 with k=5").
 
-Audit: count [N]> per lecture; accept 18-22; numbering gaps
-or duplicates = build error (number-repl.awk).
+Audit: count [N]> per lecture; accept 18-25 (a deliberately
+deep lecture may reach ~40 — consider splitting); numbering
+gaps or duplicates = build error (number-repl.awk).
 
 ## GLOSSARY (final chunk)
 
 Table: ACRO | expansion | one-liner | first-use anchor | ref.
 Audits (awk-able): glossary<->vignette bijection; anchors
-resolve; no acronym unused by sources code. Cap ~25.
+resolve; no acronym unused by sources code. Cap ~25 per
+single file; a full 10-lecture course runs ~50-55.
 
 ## APPENDIX
 
