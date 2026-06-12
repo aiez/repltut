@@ -213,6 +213,31 @@ that is [284]+[285] in one line"). End with a
 "deliberately skipped" list. Cite the quick-ref from
 `refs`.
 
+## 5c. REPLICATION HOMEWORK (the tutorial IS the spec)
+
+The strongest student exercise: reimplement the system in
+another language, paced by the gates. One standing
+assignment suffices — "by end of week k, your port
+reproduces every REPL prompt through that lecture's range"
+(~20-25 events/week; the TOC table is the schedule). Make
+that gradable by diff:
+
+    - PORTABLE PRNG: replace the language's RNG with a tiny
+      shared generator (10-line Park-Miller; twin it in
+      every reference implementation). Same seed => same
+      numbers in any language. Without this, no stochastic
+      trace can ever match.
+    - CANONICAL ORDER: anywhere unordered iteration affects
+      output (dict scans feeding argmax, weighted picks,
+      enumeration of cut values, report rows), iterate in
+      sorted order — in all implementations.
+    - CANONICAL FLOATS: the trace harness formats numbers
+      (%.10g) so float-printing differences between
+      languages vanish.
+    - prefer DISTRIBUTIONAL demos (20-repeat means) over
+      single lucky runs in the tutorial itself: robust to
+      RNG changes and honest by construction.
+
 ## 8b. ASSESSMENT LAYER (Bloom, top to bottom)
 
 Audit the tutorial against Bloom's hierarchy before calling
