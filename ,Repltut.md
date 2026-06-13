@@ -2,7 +2,8 @@
 <a href="https://timm.fyi"><img align="right" alt="Author" src="https://img.shields.io/badge/Author-timm-dc143c?logo=readme&logoColor=white"></a><img align="right" alt="Language" src="https://img.shields.io/badge/Language-Markdown-000080?logo=markdown&logoColor=white"><img align="right" alt="License" src="https://img.shields.io/badge/License-MIT-32cd32?logo=open-source-initiative&logoColor=white"><img align="right" alt="Purpose" src="https://img.shields.io/badge/Purpose-LLM·Authoring·Teaching-7b68ee?logo=githubcopilot&logoColor=white">
 
 ### [http://tiny.cc/repltut](http://tiny.cc/repltut)
-Prompts and exemplars for generating "genetic stanza" REPL
+How to convert source code into a textbook. Prompts and exemplars
+for generating "genetic stanza" REPL
 tutorials: source files that read top-to-bottom as a short paper
 and load top-to-bottom as code, narrated by numbered REPL traces
 (`[1]>` ... `[48]>`). Includes the authoring prompt, a worked
