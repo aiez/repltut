@@ -19,7 +19,7 @@ less author.md
 
 **Sections:** [NAME](#name) | [SYNOPSIS](#synopsis) | [OPTIONS](#options) | [EXEMPLARS](#exemplars) | [OUTPUT](#output) | [SEE ALSO](#see-also) | [LICENSE](#license) | [AUTHOR](#author)
 
-**Files:** [tutgen.md](#file-tutgen-md) | [author.md](#file-author-md) | [fri2.md](#file-fri2-md) | [kr_ch1.md](#file-kr_ch1-md) | [ezr.tex](#file-ezr-tex) | [repl.lua](#file-repl-lua) | [Makefile](#file-makefile)
+**Files:** [tutgen.md](http://tiny.cc/repltut#file-tutgen-md) | [author.md](http://tiny.cc/repltut#file-author-md) | [fri2.md](http://tiny.cc/repltut#file-fri2-md) | [kr_ch1.md](http://tiny.cc/repltut#file-kr_ch1-md) | [ezr.tex](http://tiny.cc/repltut#file-ezr-tex) | [repl.lua](http://tiny.cc/repltut#file-repl-lua) | [Makefile](http://tiny.cc/repltut#file-makefile)
 
 tutgen.md = meta-prompt: code in, multi-lecture REPL course out
 (harness, audits, weave rules); author.md = the authoring prompt
