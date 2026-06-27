@@ -1,7 +1,7 @@
 <!-- Copyright (c) 2026 Tim Menzies, MIT License https://opensource.org/licenses/MIT -->
 <a href="https://timm.fyi"><img align="right" alt="Author" src="https://img.shields.io/badge/Author-timm-dc143c?logo=readme&logoColor=white"></a><img align="right" alt="Language" src="https://img.shields.io/badge/Language-Markdown-000080?logo=markdown&logoColor=white"><img align="right" alt="License" src="https://img.shields.io/badge/License-MIT-32cd32?logo=open-source-initiative&logoColor=white"><img align="right" alt="Purpose" src="https://img.shields.io/badge/Purpose-LLM·Authoring·Teaching-7b68ee?logo=githubcopilot&logoColor=white">
 
-### [http://tiny.cc/repltut](http://tiny.cc/repltut)
+### [https://github.com/aiez/repltut](https://github.com/aiez/repltut)
 How to convert source code into a textbook. Prompts and exemplars
 for generating "genetic stanza" REPL
 tutorials: source files that read top-to-bottom as a short paper
@@ -11,7 +11,7 @@ example (Lisp data mining), and the K&R tone exemplar.
 
 ```bash
 # install and read
-git clone http://tiny.cc/repltut repltut && cd repltut
+git clone https://github.com/aiez/repltut repltut && cd repltut
 less author.md
 ```
 
@@ -19,7 +19,7 @@ less author.md
 
 **Sections:** [NAME](#name) | [SYNOPSIS](#synopsis) | [OPTIONS](#options) | [EXEMPLARS](#exemplars) | [OUTPUT](#output) | [SEE ALSO](#see-also) | [LICENSE](#license) | [AUTHOR](#author)
 
-**Files:** [tutgen.md](http://tiny.cc/repltut#file-tutgen-md) | [author.md](http://tiny.cc/repltut#file-author-md) | [fri2.md](http://tiny.cc/repltut#file-fri2-md) | [kr_ch1.md](http://tiny.cc/repltut#file-kr_ch1-md) | [ezr.tex](http://tiny.cc/repltut#file-ezr-tex) | [repl.lua](http://tiny.cc/repltut#file-repl-lua) | [Makefile](http://tiny.cc/repltut#file-makefile)
+**Files:** [tutgen.md](https://github.com/aiez/repltut#file-tutgen-md) | [author.md](https://github.com/aiez/repltut#file-author-md) | [fri2.md](https://github.com/aiez/repltut#file-fri2-md) | [kr_ch1.md](https://github.com/aiez/repltut#file-kr_ch1-md) | [ezr.tex](https://github.com/aiez/repltut#file-ezr-tex) | [repl.lua](https://github.com/aiez/repltut#file-repl-lua) | [Makefile](https://github.com/aiez/repltut#file-makefile)
 
 tutgen.md = meta-prompt: code in, multi-lecture REPL course out
 (harness, audits, weave rules); author.md = the authoring prompt
@@ -75,8 +75,8 @@ harness for verbatim numbered traces.
 
 ## SEE ALSO
 
-    luamine   http://tiny.cc/luamine  Lua data mining (same CSV protocol)
-    konfig    http://tiny.cc/konfig   shared Makefile, dotfiles
+    luamine   https://github.com/aiez/luamine  Lua data mining (same CSV protocol)
+    konfig    https://github.com/aiez/konfig   shared Makefile, dotfiles
 
 ## LICENSE
 
