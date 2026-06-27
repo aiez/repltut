@@ -15,8 +15,6 @@ git clone https://github.com/aiez/repltut repltut && cd repltut
 less author.md
 ```
 
-<img width="150" align="right" alt="qr" src="https://tiny.cc/tiny/qr-image/tiny.cc~repltut~l~150.png" />
-
 **Sections:** [NAME](#name) | [SYNOPSIS](#synopsis) | [OPTIONS](#options) | [EXEMPLARS](#exemplars) | [OUTPUT](#output) | [SEE ALSO](#see-also) | [LICENSE](#license) | [AUTHOR](#author)
 
 **Files:** [tutgen.md](https://github.com/aiez/repltut#file-tutgen-md) | [author.md](https://github.com/aiez/repltut#file-author-md) | [fri2.md](https://github.com/aiez/repltut#file-fri2-md) | [kr_ch1.md](https://github.com/aiez/repltut#file-kr_ch1-md) | [ezr.tex](https://github.com/aiez/repltut#file-ezr-tex) | [repl.lua](https://github.com/aiez/repltut#file-repl-lua) | [Makefile](https://github.com/aiez/repltut#file-makefile)
